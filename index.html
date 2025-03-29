@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#90caf9">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Workout Tracker</h1>
+            <button id="addWorkout" class="fab-button">+</button>
+        </header>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-page="workouts">
+                <span class="icon">💪</span>
+                <span>Тренировки</span>
+            </button>
+            <button class="nav-item" data-page="calendar">
+                <span class="icon">📅</span>
+                <span>Календарь</span>
+            </button>
+            <button class="nav-item" data-page="profile">
+                <span class="icon">👤</span>
+                <span>Профиль</span>
+            </button>
+        </nav>
+
+        <main>
+            <div id="workouts-page" class="page active">
+                <div class="workout-list"></div>
+            </div>
+
+            <div id="calendar-page" class="page">
+                <div class="calendar"></div>
+            </div>
+
+            <div id="profile-page" class="page">
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Всего тренировок</h3>
+                        <p id="totalWorkouts">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Всего упражнений</h3>
+                        <p id="totalExercises">0</p>
+                    </div>
+                </div>
+                <div class="progress-charts"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 
